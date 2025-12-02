@@ -1,0 +1,182 @@
+[
+    {
+        "nama": "Aceh Andaman",
+        "magnitudo_maksimum": 9.2,
+        "panjang_segmen_km": 1300.0,
+        "tahun_gempa_terakhir": 2004,
+        "koordinat": [
+            [
+                3.14,
+                92.97
+            ]
+        ]
+    },
+    {
+        "nama": "Nias-Simelue",
+        "magnitudo_maksimum": 8.7,
+        "panjang_segmen_km": 390.0,
+        "tahun_gempa_terakhir": 2005,
+        "koordinat": [
+            [
+                2.09,
+                97.15
+            ]
+        ]
+    },
+    {
+        "nama": "Batu",
+        "magnitudo_maksimum": 7.8,
+        "panjang_segmen_km": 70.0,
+        "tahun_gempa_terakhir": 1935,
+        "koordinat": [
+            [
+                0.1,
+                97.98
+            ]
+        ]
+    },
+    {
+        "nama": "Mentawai-siberut",
+        "magnitudo_maksimum": 8.9,
+        "panjang_segmen_km": 300.0,
+        "tahun_gempa_terakhir": 1797,
+        "koordinat": [
+            [
+                0.2,
+                98.99
+            ]
+        ]
+    },
+    {
+        "nama": "Mentawai-pagai",
+        "magnitudo_maksimum": 8.9,
+        "panjang_segmen_km": 270.0,
+        "tahun_gempa_terakhir": 1833,
+        "koordinat": [
+            [
+                3.2,
+                99.101
+            ]
+        ]
+    },
+    {
+        "nama": "Enggano - selat sunda",
+        "magnitudo_maksimum": 8.9,
+        "panjang_segmen_km": 420.0,
+        "tahun_gempa_terakhir": 2000,
+        "koordinat": [
+            [
+                4.6,
+                101.103
+            ]
+        ]
+    },
+    {
+        "nama": "Jawa Large Rupture",
+        "magnitudo_maksimum": 9.1,
+        "panjang_segmen_km": 1120.0,
+        "tahun_gempa_terakhir": 0,
+        "koordinat": [
+            [
+                7.1,
+                103.112
+            ]
+        ]
+    },
+    {
+        "nama": "Jawa barat-Jawa tengah",
+        "magnitudo_maksimum": 8.9,
+        "panjang_segmen_km": 670.0,
+        "tahun_gempa_terakhir": 2006,
+        "koordinat": [
+            [
+                7.9,
+                105.108
+            ]
+        ]
+    },
+    {
+        "nama": "Jawa Timur",
+        "magnitudo_maksimum": 8.9,
+        "panjang_segmen_km": 450.0,
+        "tahun_gempa_terakhir": 1994,
+        "koordinat": [
+            [
+                8.1,
+                108.112
+            ]
+        ]
+    },
+    {
+        "nama": "Sumba",
+        "magnitudo_maksimum": 8.5,
+        "panjang_segmen_km": 550.0,
+        "tahun_gempa_terakhir": 1977,
+        "koordinat": [
+            [
+                8.13,
+                113.121
+            ]
+        ]
+    },
+    {
+        "nama": "Utara Sulawesi",
+        "magnitudo_maksimum": 8.5,
+        "panjang_segmen_km": 1120.0,
+        "tahun_gempa_terakhir": 1996,
+        "koordinat": [
+            [
+                0.2,
+                124.127
+            ]
+        ]
+    },
+    {
+        "nama": "Papua",
+        "magnitudo_maksimum": 8.6,
+        "panjang_segmen_km": 800.0,
+        "tahun_gempa_terakhir": 1996,
+        "koordinat": [
+            [
+                0.1,
+                1.3
+            ]
+        ]
+    },
+    {
+        "nama": "Catobato",
+        "magnitudo_maksimum": 8.3,
+        "panjang_segmen_km": 310.0,
+        "tahun_gempa_terakhir": 1976,
+        "koordinat": [
+            [
+                4.7,
+                123.125
+            ]
+        ]
+    },
+    {
+        "nama": "Filipina selatan",
+        "magnitudo_maksimum": 8.2,
+        "panjang_segmen_km": 550.0,
+        "tahun_gempa_terakhir": 2018,
+        "koordinat": [
+            [
+                4.7,
+                126.128
+            ]
+        ]
+    },
+    {
+        "nama": "Filipina tengah",
+        "magnitudo_maksimum": 8.1,
+        "panjang_segmen_km": 380.0,
+        "tahun_gempa_terakhir": 2012,
+        "koordinat": [
+            [
+                12.14,
+                118.12
+            ]
+        ]
+    }
+]
