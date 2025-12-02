@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Peta Megathrust Indonesia - Versi Lengkap</title>
+    <meta charset="utf-8" />
+
+    <!-- CSS Leaflet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+    <!-- JS Leaflet -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+    <style>
+        html, body { height: 100%; margin: 0; padding: 0; }
+        #map { height: 100%; }
+        body { font-family: Arial, sans-serif; }
+    </style>
+</head>
+
+<body>
+    <div id="map"></div>
+
+    <script>
+        // GANTI URL DI BAWAH DENGAN RAW GITHUB JIKA DIUPLOAD ONLINE
+        const JSON_URL = "data/sesar.json";
+
+        var map = L.map('map').setView([-2, 118], 5);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 18
+        }).addTo(map);
+
+        function getColor(mag) {
+            if (mag >= 9) return "#ff0000";
+            if (mag >= 8.5) return "#ff6600";
+            if (mag >= 8) return "#ffaa00";
+            return "#00ccff";
+        }
+
+        fetch(JSON_URL)
+            .then(response => response.json())
+            .then(data => {
+
+                let allCoords = [];
+
+                data.forEach(segmen => {
+                    let coords = segmen.koordinat;
+                    allCoords = allCoords.concat(coords);
+
+                    L.polyline(coords, {
+                        color: getColor(segmen.magnitudo_maksimum),
+                        weight: 4,
+                        opacity: 0.9
+                    }).addTo(map)
+                    .bindPopup(
+                        `<b>${segmen.nama}</b><br>
+                         Magnitudo Maksimum: ${segmen.magnitudo_maksimum}<br>
+                         Panjang Segmen: ${segmen.panjang_segmen_km} km<br>
+                         Tahun Gempa Terakhir: ${segmen.tahun_gempa_terakhir}`
+                    );
+
+                    coords.forEach(pt => {
+                        L.circleMarker(pt, {
+                            radius: 4,
+                            color: "black",
+                            fillColor: getColor(segmen.magnitudo_maksimum),
+                            fillOpacity: 1
+                        }).addTo(map);
+                    });
+                });
+
+                if (allCoords.length > 0) {
+                    map.fitBounds(allCoords);
+                }
+            })
+            .catch(error => {
+                console.error("Gagal memuat JSON:", error);
+                alert("Tidak dapat memuat JSON. Pastikan path benar.");
+            });
+    </script>
+
+</body>
+</html>
