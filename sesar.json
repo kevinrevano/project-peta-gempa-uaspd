@@ -1,11 +1,12 @@
 [
     {
-        "nama": "Aceh - andaman",
+        "nama": "Aceh - Andaman",
         "magnitudo_maksimum": 9.2,
         "panjang_segmen_km": 1300.0,
         "tahun_gempa_terakhir": 2004,
         "lat": 5.5,
-        "lon": 95.0
+        "lon": 95.0,
+        "angle": 135.0
     },
     {
         "nama": "Simelue",
@@ -13,23 +14,26 @@
         "panjang_segmen_km": 390.0,
         "tahun_gempa_terakhir": 2005,
         "lat": 2.4,
-        "lon": 96.3
+        "lon": 96.3,
+        "angle": 135.0
     },
     {
-        "nama": "mentawai siberut",
+        "nama": "Mentawai Siberut",
         "magnitudo_maksimum": 8.9,
         "panjang_segmen_km": 300.0,
         "tahun_gempa_terakhir": 1797,
         "lat": -1.5,
-        "lon": 99.0
+        "lon": 99.0,
+        "angle": 150.0
     },
     {
-        "nama": "Mentawai pagai",
+        "nama": "Mentawai Pagai",
         "magnitudo_maksimum": 8.9,
         "panjang_segmen_km": 270.0,
         "tahun_gempa_terakhir": 1833,
         "lat": -3.1,
-        "lon": 100.1
+        "lon": 100.1,
+        "angle": 150.0
     },
     {
         "nama": "Enggano",
@@ -37,15 +41,17 @@
         "panjang_segmen_km": 190.0,
         "tahun_gempa_terakhir": 2000,
         "lat": -5.2,
-        "lon": 102.0
+        "lon": 102.0,
+        "angle": 160.0
     },
     {
-        "nama": "selat sunda",
+        "nama": "Selat Sunda",
         "magnitudo_maksimum": 8.7,
         "panjang_segmen_km": 280.0,
         "tahun_gempa_terakhir": 1780,
         "lat": -6.5,
-        "lon": 105.5
+        "lon": 105.5,
+        "angle": 170.0
     },
     {
         "nama": "Jawa Barat",
@@ -53,7 +59,8 @@
         "panjang_segmen_km": 320.0,
         "tahun_gempa_terakhir": 2006,
         "lat": -7.8,
-        "lon": 108.0
+        "lon": 108.0,
+        "angle": 185.0
     },
     {
         "nama": "Jawa Tengah",
@@ -61,15 +68,17 @@
         "panjang_segmen_km": 250.0,
         "tahun_gempa_terakhir": 1921,
         "lat": -8.2,
-        "lon": 110.2
+        "lon": 110.2,
+        "angle": 190.0
     },
     {
-        "nama": "Jawa timur",
+        "nama": "Jawa Timur",
         "magnitudo_maksimum": 8.9,
         "panjang_segmen_km": 450.0,
         "tahun_gempa_terakhir": 1994,
         "lat": -8.4,
-        "lon": 112.5
+        "lon": 112.5,
+        "angle": 195.0
     },
     {
         "nama": "Sumba",
@@ -77,14 +86,16 @@
         "panjang_segmen_km": 500.0,
         "tahun_gempa_terakhir": 1977,
         "lat": -9.6,
-        "lon": 119.0
+        "lon": 119.0,
+        "angle": 120.0
     },
     {
         "nama": "Sulawesi Utara",
         "magnitudo_maksimum": 8.5,
-        "panjang_segmen_km": 1200.0,
+        "panjang_segmen_km": 1120.0,
         "tahun_gempa_terakhir": 1996,
         "lat": 1.0,
-        "lon": 125.0
+        "lon": 125.0,
+        "angle": 300.0
     }
 ]
