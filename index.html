@@ -1,107 +1,71 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Peta Segmen Megathrust</title>
-<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
-<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-<style>
-  html,body,#map { height: 100%; margin:0; padding:0; }
-</style>
+    <meta charset="utf-8" />
+    <title>Peta Megathrust Indonesia</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+    <style>
+        #map { height: 100vh; width: 100%; }
+    </style>
 </head>
 <body>
+
 <div id="map"></div>
+
 <script>
-// UBAH INI ke RAW URL kamu
-const JSON_URL = "https://raw.githubusercontent.com/kevinrevano/project-peta-gempa-uaspd/main/data/sesar.json";
 
-function getColor(m) {
-    return m >= 9 ? "#d7191c" :
-           m >= 8.5 ? "#fdae61" :
-           m >= 8 ? "#ffffbf" :
-                    "#abd9e9";
-}
-
-// fungsi pembuatan kotak yang benar (copy dari atas)
-function createOrientedBox(lat, lon, panjang_km, angle_deg) {
-    const latRad = lat * Math.PI / 180;
-    const angle = angle_deg * Math.PI / 180;
-    const half_km = panjang_km / 2.0;
-    const dx_km = half_km * Math.cos(angle);
-    const dy_km = half_km * Math.sin(angle);
-    const km_per_deg_lat = 110.574;
-    const km_per_deg_lon = 111.320 * Math.cos(latRad);
-    const dx_deg = dx_km / km_per_deg_lon;
-    const dy_deg = dy_km / km_per_deg_lat;
-    const width_km = 20;
-    const half_w_deg_lat = (width_km / 2) / km_per_deg_lat;
-    const half_w_deg_lon = (width_km / 2) / km_per_deg_lon;
-
-    const latA = lat - dy_deg - half_w_deg_lat;
-    const lonA = lon - dx_deg - half_w_deg_lon;
-    const latB = lat - dy_deg + half_w_deg_lat;
-    const lonB = lon - dx_deg + half_w_deg_lon;
-    const latC = lat + dy_deg + half_w_deg_lat;
-    const lonC = lon + dx_deg + half_w_deg_lon;
-    const latD = lat + dy_deg - half_w_deg_lat;
-    const lonD = lon + dx_deg - half_w_deg_lon;
-
-    return [
-        [latA, lonA],
-        [latB, lonB],
-        [latC, lonC],
-        [latD, lonD]
-    ];
-}
+// URL SESAR JSON
+const dataUrl = "https://raw.githubusercontent.com/kevinrevano/project-peta-gempa-uaspd/main/data/sesar.json";
 
 var map = L.map('map').setView([-2, 118], 5);
-L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", { maxZoom: 12 }).addTo(map);
 
-// load JSON
-fetch(JSON_URL)
-.then(r => {
-    if (!r.ok) throw new Error("Gagal ambil JSON: " + r.status);
-    return r.json();
-})
-.then(data => {
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 10
+}).addTo(map);
+
+fetch(dataUrl)
+  .then(res => res.json())
+  .then(data => {
+
     data.forEach(seg => {
-        // pastikan seg punya lat & lon
-        if (typeof seg.lat !== "number" || typeof seg.lon !== "number") {
-            console.warn("Segmen tanpa lat/lon: ", seg.nama);
-            return;
-        }
-        // arah default (bisa disesuaikan dari nama)
-        let angle = 300; // default
-        const n = (seg.nama || "").toLowerCase();
-        if (n.includes("sumatra")) angle = 320;
-        else if (n.includes("jawa")) angle = 270;
-        else if (n.includes("ntt") || n.includes("flores")) angle = 260;
-        else if (n.includes("maluku") || n.includes("banda")) angle = 310;
-        else if (n.includes("sulawesi")) angle = 300;
 
-        const polyPts = createOrientedBox(seg.lat, seg.lon, seg.panjang_segmen_km, angle);
+      // konversi panjang segmen ke derajat (1 derajat ≈ 111 km)
+      let halfLen = (seg.panjang_segmen_km / 111) / 2;
 
-        const polygon = L.polygon(polyPts, {
-            color: "black",
-            weight: 1.2,
-            fillColor: getColor(seg.magnitudo_maksimum),
-            fillOpacity: 0.7
-        }).addTo(map);
+      // ambil arah segmen
+      let angleRad = seg.angle * Math.PI / 180;
 
-        polygon.bindPopup(
-            `<b>${seg.nama}</b><br>
-             Magnitudo Maks: <b>${seg.magnitudo_maksimum}</b><br>
-             Panjang: <b>${seg.panjang_segmen_km} km</b><br>
-             Tahun: <b>${seg.tahun_gempa_terakhir}</b><br>
-             Arah: <b>${angle}°</b>`
-        );
+      // hitung titik-titik kotak
+      let dx = halfLen * Math.cos(angleRad);
+      let dy = halfLen * Math.sin(angleRad);
+
+      // empat titik kotak
+      let p1 = [seg.lat - dy, seg.lon - dx];
+      let p2 = [seg.lat + dy, seg.lon + dx];
+
+      let rect = L.rectangle([p1, p2], {
+        color: seg.magnitudo_maksimum >= 9 ? "red" :
+               seg.magnitudo_maksimum >= 8.5 ? "orange" :
+               "yellow",
+        weight: 2,
+        fillOpacity: 0.4
+      }).addTo(map);
+
+      rect.bindPopup(`
+        <b>${seg.nama}</b><br>
+        Magnitudo Maksimum: ${seg.magnitudo_maksimum}<br>
+        Panjang Segmen: ${seg.panjang_segmen_km} km<br>
+        Tahun Gempa Terakhir: ${seg.tahun_gempa_terakhir}<br>
+        Lokasi: ${seg.lat}, ${seg.lon}<br>
+        Arah Segmen: ${seg.angle}°
+      `);
+
     });
-})
-.catch(err => {
-    console.error(err);
-    alert("Gagal mengambil atau memproses JSON. Cek console.");
-});
+
+  });
+
 </script>
 </body>
 </html>
