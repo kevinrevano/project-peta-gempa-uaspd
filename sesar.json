@@ -1,92 +1,90 @@
 [
     {
-        "nama": "Aceh - Andaman",
+        "nama": "Aceh - andaman",
         "magnitudo_maksimum": 9.2,
         "panjang_segmen_km": 1300.0,
-        "tahun_gempa_terakhir": 2004
+        "tahun_gempa_terakhir": 2004,
+        "lat": 5.5,
+        "lon": 95.0
     },
     {
-        "nama": "Nias - Simelue",
+        "nama": "Simelue",
         "magnitudo_maksimum": 8.7,
         "panjang_segmen_km": 390.0,
-        "tahun_gempa_terakhir": 2005
+        "tahun_gempa_terakhir": 2005,
+        "lat": 2.4,
+        "lon": 96.3
     },
     {
-        "nama": "Batu",
-        "magnitudo_maksimum": 7.8,
-        "panjang_segmen_km": 70.0,
-        "tahun_gempa_terakhir": 1935
-    },
-    {
-        "nama": "Mentawai - Siberut",
+        "nama": "mentawai siberut",
         "magnitudo_maksimum": 8.9,
         "panjang_segmen_km": 300.0,
-        "tahun_gempa_terakhir": 1797
+        "tahun_gempa_terakhir": 1797,
+        "lat": -1.5,
+        "lon": 99.0
     },
     {
-        "nama": "Mentawai - Pagai",
+        "nama": "Mentawai pagai",
         "magnitudo_maksimum": 8.9,
         "panjang_segmen_km": 270.0,
-        "tahun_gempa_terakhir": 1833
+        "tahun_gempa_terakhir": 1833,
+        "lat": -3.1,
+        "lon": 100.1
     },
     {
-        "nama": "Enggano - Selat sunda",
-        "magnitudo_maksimum": 8.9,
-        "panjang_segmen_km": 420.0,
-        "tahun_gempa_terakhir": 2000
+        "nama": "Enggano",
+        "magnitudo_maksimum": 8.7,
+        "panjang_segmen_km": 190.0,
+        "tahun_gempa_terakhir": 2000,
+        "lat": -5.2,
+        "lon": 102.0
     },
     {
-        "nama": "Jawa Large Rupture",
-        "magnitudo_maksimum": 8.9,
-        "panjang_segmen_km": 1120.0,
-        "tahun_gempa_terakhir": 0
+        "nama": "selat sunda",
+        "magnitudo_maksimum": 8.7,
+        "panjang_segmen_km": 280.0,
+        "tahun_gempa_terakhir": 1780,
+        "lat": -6.5,
+        "lon": 105.5
     },
     {
-        "nama": "Jawa barat - Jawa  tengah",
-        "magnitudo_maksimum": 8.9,
-        "panjang_segmen_km": 670.0,
-        "tahun_gempa_terakhir": 2006
+        "nama": "Jawa Barat",
+        "magnitudo_maksimum": 8.8,
+        "panjang_segmen_km": 320.0,
+        "tahun_gempa_terakhir": 2006,
+        "lat": -7.8,
+        "lon": 108.0
+    },
+    {
+        "nama": "Jawa Tengah",
+        "magnitudo_maksimum": 8.7,
+        "panjang_segmen_km": 250.0,
+        "tahun_gempa_terakhir": 1921,
+        "lat": -8.2,
+        "lon": 110.2
     },
     {
         "nama": "Jawa timur",
         "magnitudo_maksimum": 8.9,
         "panjang_segmen_km": 450.0,
-        "tahun_gempa_terakhir": 1994
+        "tahun_gempa_terakhir": 1994,
+        "lat": -8.4,
+        "lon": 112.5
     },
     {
         "nama": "Sumba",
         "magnitudo_maksimum": 8.5,
-        "panjang_segmen_km": 550.0,
-        "tahun_gempa_terakhir": 1977
+        "panjang_segmen_km": 500.0,
+        "tahun_gempa_terakhir": 1977,
+        "lat": -9.6,
+        "lon": 119.0
     },
     {
-        "nama": "Utara Sulawesi",
+        "nama": "Sulawesi Utara",
         "magnitudo_maksimum": 8.5,
-        "panjang_segmen_km": 1120.0,
-        "tahun_gempa_terakhir": 1996
-    },
-    {
-        "nama": "Papua",
-        "magnitudo_maksimum": 8.6,
-        "panjang_segmen_km": 800.0,
-        "tahun_gempa_terakhir": 1996
-    },
-    {
-        "nama": "Catobato",
-        "magnitudo_maksimum": 8.3,
-        "panjang_segmen_km": 310.0,
-        "tahun_gempa_terakhir": 1976
-    },
-    {
-        "nama": "Filipina selatan",
-        "magnitudo_maksimum": 8.2,
-        "panjang_segmen_km": 550.0,
-        "tahun_gempa_terakhir": 2018
-    },
-    {
-        "nama": "Filipina Tengah",
-        "magnitudo_maksimum": 8.1,
-        "panjang_segmen_km": 380.0,
-        "tahun_gempa_terakhir": 2012
+        "panjang_segmen_km": 1200.0,
+        "tahun_gempa_terakhir": 19961,
+        "lat": 1.0,
+        "lon": 125.0
     }
 ]
