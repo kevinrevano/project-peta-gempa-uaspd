@@ -1,131 +1,69 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Peta Segmen Megathrust Indonesia</title>
+    <title>Peta Segmen Megathrust</title>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-
     <style>
         html, body { height: 100%; margin: 0; }
         #map { height: 100%; }
     </style>
 </head>
-
 <body>
+
 <div id="map"></div>
 
 <script>
+const JSON_URL = "https://raw.githubusercontent.com/kevinrevano/project-peta-gempa-uaspd/main/data/sesar.json";
 
-// ===============================
-// 1. URL JSON di GitHub kamu
-// ===============================
-const JSON_URL = "sesar.json";
-
-// ===============================
-// 2. Posisi default tiap segmen
-// ===============================
-function getZone(nama) {
-    nama = nama.toLowerCase();
-    if (nama.includes("sumatra")) return [-4.5, 101.0];
-    if (nama.includes("jawa")) return [-8.0, 110.0];
-    if (nama.includes("ntt") || nama.includes("flores")) return [-9.0, 120.0];
-    if (nama.includes("maluku")) return [-3.0, 128.0];
-    if (nama.includes("sulawesi")) return [-1.5, 123.0];
-    return [-2, 118]; // default Indonesia
-}
-
-// ===============================
-// 3. Arah megathrust tiap wilayah
-// ===============================
-function getAngle(nama) {
-    nama = nama.toLowerCase();
-    if (nama.includes("sumatra")) return 320;
-    if (nama.includes("jawa")) return 270;
-    if (nama.includes("ntt") || nama.includes("flores")) return 260;
-    if (nama.includes("maluku")) return 310;
-    if (nama.includes("sulawesi")) return 300;
-    return 300;
-}
-
-// ===============================
-// 4. Warna berdasarkan magnitudo
-// ===============================
-function getColor(m) {
-    return m >= 9 ? "#d7191c" :
-           m >= 8.5 ? "#fdae61" :
-           m >= 8 ? "#ffffbf" :
-                    "#abd9e9";
-}
-
-// ===============================
-// 5. Inisialisasi peta
-// ===============================
 var map = L.map('map').setView([-2, 118], 5);
+L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png").addTo(map);
 
-L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-    maxZoom: 10
-}).addTo(map);
+function createSegment(lat, lon, km, angle){
+    let d = km / 110;
+    let rad = angle * Math.PI / 180;
 
+    let dx = Math.cos(rad) * d;
+    let dy = Math.sin(rad) * d;
 
-// ===============================
-// 6. Buat kotak segmen memanjang
-// ===============================
-function createOrientedBox(lat, lon, panjang_km, angle_deg) {
-
-    let d = panjang_km / 110; // km -> derajat
-    let angle = angle_deg * Math.PI / 180;
-
-    let dlat = Math.sin(angle) * d / 2;
-    let dlon = Math.cos(angle) * d / 2;
-
-    let width = 0.25; // ketebalan zona megathrust
+    let w = 0.2;
 
     return [
-        [lat - width, lon - dlon],
-        [lat + width, lon - dlon],
-        [lat + width, lon + dlon],
-        [lat - width, lon + dlon]
+        [lat-w, lon-dx],
+        [lat+w, lon-dx],
+        [lat+w, lon+dx],
+        [lat-w, lon+dx]
     ];
 }
 
-
-// ===============================
-// 7. Ambil data dari JSON
-// ===============================
 fetch(JSON_URL)
-    .then(r => r.json())
-    .then(data => {
+.then(res => res.json())
+.then(data => {
+    data.forEach(seg => {
 
-        data.forEach(seg => {
+        let angle = 300; // default
+        if (seg.nama.toLowerCase().includes("aceh")) angle = 320;
+        if (seg.nama.toLowerCase().includes("jawa")) angle = 270;
+        if (seg.nama.toLowerCase().includes("ntt")||seg.nama.toLowerCase().includes("flores")) angle=260;
 
-            let [lat, lon] = getZone(seg.nama);
-            let angle = getAngle(seg.nama);
+        let polygon = L.polygon(
+            createSegment(seg.lat, seg.lon, seg.panjang_segmen_km, angle),
+            {
+                color:"black",
+                fillColor:"#fdae61",
+                fillOpacity:0.6
+            }
+        ).addTo(map);
 
-            let polygon = L.polygon(
-                createOrientedBox(lat, lon, seg.panjang_segmen_km, angle),
-                {
-                    color: "black",
-                    weight: 1.5,
-                    fillColor: getColor(seg.magnitudo_maksimum),
-                    fillOpacity: 0.65
-                }
-            ).addTo(map);
-
-            // ========= Popup saat DIKLIK =========
-            polygon.bindPopup(`
-                <b>${seg.nama}</b><br>
-                Magnitudo Maks: <b>${seg.magnitudo_maksimum}</b><br>
-                Panjang: <b>${seg.panjang_segmen_km} km</b><br>
-                Tahun Gempa Terakhir: <b>${seg.tahun_gempa_terakhir}</b><br>
-                Arah Segmen: <b>${angle}°</b>
-            `);
-
-        });
+        polygon.bindPopup(`
+            <b>${seg.nama}</b><br>
+            Mmax: ${seg.magnitudo_maksimum}<br>
+            Panjang: ${seg.panjang_segmen_km} km<br>
+            Tahun: ${seg.tahun_gempa_terakhir}
+        `);
     });
-
+});
 </script>
 
 </body>
